@@ -7,7 +7,7 @@ Lemon Toolkit is a collection of reusable classes that I have developed. The cla
  * Written for fun
  * Extracted from an existing project
 
-Currently, lemon toolkit contains the following classes:
+Currently, Lemon Toolkit contains the following classes:
 
  * RMap:		Recursive datatype with std::ostream<<serializer; and std::istream>>deserializer; and simple["access"]["method"]
  * NoCheat:		A cheat-proof datatype
