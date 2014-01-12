@@ -125,7 +125,8 @@ class RComponentProxy: public RComponent<StrType>{
 	 * 		If it does not exist, it returns a RComponentCreator.
 	 * @throw If the object is RLeaf, this function throws a std::bad_cast.
 	 */
-	RComponentProxy& operator[](const StrType& key);
+	RComponentProxy<StrType>& operator[](const StrType& key);
+	RComponentProxy<StrType>& operator[](const char* key);
 	
 	/**
 	 * Creates a RLeaf and assign a value to it. Then append it to RMap
@@ -266,6 +267,7 @@ class RMap: public RComponent<StrType>{
 	 * The returned RComponentProxy can be used to insert and modify elements into this RMap.
 	*/
 	RComponentProxy<StrType> operator[](const StrType& key);
+	RComponentProxy<StrType> operator[](const char* key);
 
 	///converts RMap to arbitrary variable.
 	template <class T> operator const T() const;

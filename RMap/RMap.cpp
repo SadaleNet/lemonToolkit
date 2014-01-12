@@ -79,6 +79,11 @@ RComponentProxy<StrType>& RComponentProxy<StrType>::operator[](const StrType& ke
 	throw std::invalid_argument("RComponentProxy::operator[]: The underlying refernece in not a RMap");
 }
 
+template<class StrType>
+RComponentProxy<StrType>& RComponentProxy<StrType>::operator[](const char* key){
+	return this->operator[](StrType(key));
+}
+
 template <class StrType>
 RComponentProxy<StrType>::RComponentProxy(RMap<StrType>& parent, const StrType& key):parent(parent),key(key){}
 
@@ -144,6 +149,12 @@ RMap<StrType>::RMap(StrType str) :RComponent<StrType>(){
 
 template <class StrType>
 RComponentProxy<StrType> RMap<StrType>::operator[](const StrType& key){
+	RMap<StrType>& lValueThis = *this;
+	return RComponentProxy<StrType>(lValueThis, key);
+}
+
+template <class StrType>
+RComponentProxy<StrType> RMap<StrType>::operator[](const char* key){
 	RMap<StrType>& lValueThis = *this;
 	return RComponentProxy<StrType>(lValueThis, key);
 }
