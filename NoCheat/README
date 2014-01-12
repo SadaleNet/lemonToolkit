@@ -1,0 +1,9 @@
+This is a cheat-proof data type with a sample program.
+
+To use this data type, you need to include noCheat.h and copy the directory external. Then, replace:
+int variableThatIsInterestingForCheaters;
+with
+NoCheat<int> variableThatIsInterestingForCheaters;
+and you are done.
+
+This package is released under BSD 2-clause license, which is available in LICENSE.txt
