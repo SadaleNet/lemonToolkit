@@ -21,6 +21,6 @@ Usually, you are only interested in one or two classes in this toolkit. In this 
 The Makefile is used to build main.cpp, which runs test cases.
 
 New classes may be added in the future.
-Lemon Toolkit is NOT intended to be a comprehensive.
+Lemon Toolkit is NOT intended to be a comprehensive toolkit.
 This is published for the purpose of saving other's time in case they encounter some specific problems.
 
