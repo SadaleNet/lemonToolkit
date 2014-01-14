@@ -53,9 +53,6 @@ while(true){
 @endcode
 */
 
-#include <functional>
-#include <exception>
-#include <memory>
 #include <bitset>
 #include <climits>
 #include <stdint.h>
@@ -157,14 +154,15 @@ class NoCheat{
 	bool operator&&(const T& param){ return decryptValue()&&param; }
 	bool operator||(const T& param){ return decryptValue()||param; }
 
-	bool operator==(const T& param){ return decryptValue()==param; }
+	/*bool operator==(const T& param){ return decryptValue()==param; }
 	bool operator!=(const T& param){ return decryptValue()!=param; }
 	bool operator<(const T& param){ return decryptValue()<param; }
 	bool operator>(const T& param){ return decryptValue()>param; }
 	bool operator<=(const T& param){ return decryptValue()<=param; }
-	bool operator>=(const T& param){ return decryptValue()>=param; }
+	bool operator>=(const T& param){ return decryptValue()>=param; }*/
+	//^ Note: the operator T() below can convert to a type that make the built-in comparison operators work
 
-	operator T(){
+	operator T() const{
 		return decryptValue();
 	}
 };

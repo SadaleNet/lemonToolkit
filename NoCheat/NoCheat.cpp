@@ -37,6 +37,50 @@ Modified to adapt into lemon tookit in 12/01/2014
 
 #include <assert.h>
 template <class T>
+void testIntegralOnly(){
+	NoCheat<T> alpha;
+	NoCheat<T> beta;
+
+	//assignment test
+	beta = 500;
+	alpha = beta;
+	alpha += beta;
+	alpha -= 50;
+	alpha *= 2;
+	alpha /= 2;
+	assert(alpha==950);
+	alpha %= 3;
+	assert(alpha==2);
+	alpha = 0x82;
+	alpha &= 0xF0;
+	assert(alpha==0x80);
+	alpha = 0x82;
+	alpha |= 0x01;
+	assert(alpha==0x83);
+	alpha = 0x82;
+	alpha ^= 0x0F;
+	assert(alpha==0x8D);
+	alpha = 0x42;
+	alpha <<= 1;
+	assert(alpha==0x84);
+	alpha = 0xF6;
+	alpha >>= 2;
+	assert(alpha==0x3D);
+
+	//arithmetic test
+	alpha = 30;
+	beta = 500;
+	assert(beta%alpha==20);
+	alpha = 0x82;
+	assert((alpha&0xF0)==0x80);
+	assert((alpha|0x01)==0x83);
+	assert((alpha^0x0F)==0x8D);
+	alpha = 0x42;
+	assert((alpha<<1)==0x84);
+	alpha = 0xF6;
+	assert((alpha>>2)==0x3D);
+}
+template <class T>
 void test(){
 	NoCheat<T> alpha = 30;
 	NoCheat<T> beta = 500;
@@ -71,24 +115,6 @@ void test(){
 	alpha *= 2;
 	assert(alpha==1900);
 	alpha /= 2;
-	assert(alpha==950);
-	alpha %= 3;
-	assert(alpha==2);
-	alpha = 0x82;
-	alpha &= 0xF0;
-	assert(alpha==0x80);
-	alpha = 0x82;
-	alpha |= 0x01;
-	assert(alpha==0x83);
-	alpha = 0x82;
-	alpha ^= 0x0F;
-	assert(alpha==0x8D);
-	alpha = 0x42;
-	alpha <<= 1;
-	assert(alpha==0x84);
-	alpha = 0xF6;
-	alpha >>= 2;
-	assert(alpha==0x3D);
 
 	//arithmetic test
 	alpha = 30;
@@ -97,18 +123,15 @@ void test(){
 	assert(alpha+beta==530);
 	assert(alpha-beta==-470);
 	assert(alpha*beta==15000);
-	assert(beta/alpha==16);
-	assert(beta%alpha==20);
-	alpha = 0x82;
-	assert((alpha&0xF0)==0x80);
-	assert((alpha|0x01)==0x83);
-	assert((alpha^0x0F)==0x8D);
-	alpha = 0x42;
-	assert((alpha<<1)==0x84);
-	alpha = 0xF6;
-	assert((alpha>>2)==0x3D);
+	assert(beta/alpha==16
+			||beta/alpha==16.666666666666666666666666666666666
+			||beta/alpha==16.666666666666666666666666666666666f
+			);
 }
 
 TESTCASES(NoCheat)
 	test<int>();
+	testIntegralOnly<int>();
+	test<float>();
+	test<double>();
 TESTCASES_END(NoCheat)
